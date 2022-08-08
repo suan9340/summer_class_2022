@@ -2,32 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingMenu : Menu
+public class SettingMenu : Menu<SettingMenu>
 {
-    private static SettingMenu _instance;
-    public static SettingMenu Instance { get { return _instance; } }
-
-    private void Awake()
-    {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            _instance = this;
-
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (_instance == this)
-        {
-            _instance = null;
-        }
-    }
-
     public void OnClickBGM()
     {
         Debug.Log("BGM ¼³Á¤\n");

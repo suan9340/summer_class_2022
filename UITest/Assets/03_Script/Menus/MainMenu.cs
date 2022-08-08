@@ -2,32 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenu : Menu
+
+public class MainMenu : Menu<MainMenu>
 {
-    private static MainMenu _instance;
-    public static MainMenu Instance { get { return _instance; } }
-
-    private void Awake()
-    {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            _instance = this;
-
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (_instance == this)
-        {
-            _instance = null;
-        }
-    }
-
     public void OnClickPlay()
     {
         Debug.Log("게임 시작\n");
@@ -35,18 +12,12 @@ public class MainMenu : Menu
 
     public void OnClickSetting()
     {
-        if (MenuManager.Instance != null && SettingMenu.Instance != null)
-        {
-            MenuManager.Instance.OpenMenu(SettingMenu.Instance);
-        }
+        SettingMenu.Open();
     }
 
     public void OnClickCredit()
     {
-        if (MenuManager.Instance != null && CreditMenu.Instance != null)
-        {
-            MenuManager.Instance.OpenMenu(CreditMenu.Instance);
-        }
+        CreditMenu.Open();
     }
 
     public override void OnClickBack()

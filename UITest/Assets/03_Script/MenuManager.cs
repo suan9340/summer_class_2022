@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Reflection;
 
 public class MenuManager : MonoBehaviour
 {
@@ -49,9 +50,21 @@ public class MenuManager : MonoBehaviour
 
         DontDestroyOnLoad(menuParaent_transform.gameObject);
 
-        Menu[] _menuPrefabs = { mainMenu_prefab, settingMenu_prefab, creditMenu_prefab };
-        foreach (Menu _prefab in _menuPrefabs)
+        // C# 리플렉션 기능을 통한 함수타입을 얻어와서 통합
+        System.Type _myType = this.GetType();
+        BindingFlags _myFlag = BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly;
+        FieldInfo[] _fields = _myType.GetFields(_myFlag);
+
+        // 실제 들어온 필드 확인용
+        for (int i = 0; i < _fields.Length; i++)
         {
+            Debug.Log($"fields {_fields[i]}");
+        }
+
+        foreach (FieldInfo field in _fields)
+        {
+            Menu _prefab = field.GetValue(this) as Menu;
+
             if (_prefab != null)
             {
                 // 최초 생성하고 부모 트랜스폼안으로 넣어준다
