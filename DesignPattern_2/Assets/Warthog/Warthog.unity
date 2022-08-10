@@ -483,16 +483,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9d821a6159bb4b299d01004e23dd4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 2051126953}
+  target: {fileID: 0}
   distance: 10
   height: 5
   rotationDamping: 0
   heightDamping: 0
---- !u!4 &2051126953 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5185699959651658520, guid: 67bd75b6b9e084589b08bd16e375c969, type: 3}
-  m_PrefabInstance: {fileID: 846181969574880382}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &846181969574880382
 PrefabInstance:
   m_ObjectHideFlags: 0
